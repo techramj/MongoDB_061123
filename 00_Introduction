@@ -1,0 +1,80 @@
+
+Sql(rdbms) vs NoSqL 
+
+Atomicity : 
+Consistency :
+Isolation: 
+Durability: 
+
+emp
+    id  name    salary  email
+    1   jack    1000
+    2   Sam     2000
+    3   Ajay    4000   a@test.com
+
+
+NoSqL 
+  Not only sql 
+  Non relational db 
+
+characterstic
+    schema free
+    Eventually consistent (BASE property)
+    replication of data stores to avoid failures
+    handle data with huge amount
+
+
+emp
+    id:1   name:jack    salary:1000
+    id:2   name:Sam     salary:2000
+    id:3   name:Ajay    salary:4000   email:a@test.com
+    id:4,  name:Sonu
+    id:4,  salary:5000
+
+
+Type of NoSql db:
+    Key-value stores
+    eg: redis, voldemort
+
+    column family stores:
+    eg: Cassandra, Hbase
+
+    Document Database:
+    eg: MongoDb, CouchDB
+
+    Graph Db:
+    Neo4j, HyperGraphDb
+
+
+MongoDB:
+ Document oriented NoSql Db
+ schema free
+ stored data in BSON(Binary Json)
+
+   id,name,sal,mob
+
+
+Step to install mongoDB:
+# step 1
+    click the link: https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-6.0.7-signed.msi
+
+    data directory: C:\Program Files\MongoDB\Server\6.0\data\
+
+# step 2
+    register the path in system environment
+    Navigate to : program Files => Mongodb => bin folder
+                  C:\Program Files\MongoDB\Server\6.0\bin
+
+    edit the path and click on new and add the path "C:\Program Files\MongoDB\Server\6.0\bin"
+
+    to check: 
+    go to the cmd and execute mongod
+
+
+# step 3: download mongosh:
+    https://www.mongodb.com/try/download/shell and click on download
+
+    or
+    https://downloads.mongodb.com/compass/mongosh-1.10.1-win32-x64.zip
+
+    unzip the folder and copy mongosh application and copy to the bin folder(C:\Program Files\MongoDB\Server\6.0\bin)

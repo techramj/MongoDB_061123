@@ -1,0 +1,99 @@
+SQL vs NoSql(Mongo)
+
+oracle SQL          MongoDb
+----------          --------
+Database            Database
+Table               collection
+Row                 document
+column              field
+Join                Embedded document
+Paritition          shard
+
+case 1:
+sql:
+id  name salary
+1   jack    1000
+
+
+MongoDb
+{_id: 1
+ name: 'Jack',
+ salary: 1000
+}
+
+
+SQL
+case 2:
+id  name    salary  did
+1   jack    1000    20
+
+dept
+did   dname
+20     IT
+
+Mongo
+{_id: 1
+ name: 'Jack',
+ salary: 1000,
+ dept: {
+    did:20, dname:'IT'
+ }
+}
+
+
+# command:
+## list the database:
+   show dbs
+
+## create database
+      use <db name>
+      eg: use hr
+
+## see the statistic of db
+      db.stats();
+
+         {
+         db: 'hr',
+         collections: 0,
+         views: 0,
+         objects: 0,
+         avgObjSize: 0,
+         dataSize: 0,
+         storageSize: 0,
+         indexes: 0,
+         indexSize: 0,
+         totalSize: 0,
+         scaleFactor: 1,
+         fsUsedSize: 0,
+         fsTotalSize: 0,
+         ok: 1
+         }
+
+ ## drop database
+    db.dropDatabase();
+
+## create collection (table)
+   db.createCollection('<collection name>');
+   eg: db.createCollection('emp');
+
+   return => { ok: 1 }
+
+
+## listdown the collections(tables)
+   show collections
+
+
+## drop collection
+   db.<collection_name>.drop();
+   eg: db.emp.drop();
+
+   return => true
+ 
+
+
+## insert the document(row)
+   db.<collection_name>.insert({data});   //deprecated
+   db.<collection_name>.insertOne({data});
+   db.<collection_name>.insertMany([{data1}, {data2}]);
+
+   {data} => {field1:value1, field2:value2}

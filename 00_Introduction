@@ -77,4 +77,5 @@ Step to install mongoDB:
     or
     https://downloads.mongodb.com/compass/mongosh-1.10.1-win32-x64.zip
 
-    unzip the folder and copy mongosh application and copy to the bin folder(C:\Program Files\MongoDB\Server\6.0\bin)
+    unzip the folder and copy mongosh application 
+    and copy to the bin folder of mongodb(C:\Program Files\MongoDB\Server\6.0\bin)

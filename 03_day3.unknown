@@ -1,0 +1,16 @@
+# execute the script in command propmpt
+    mongosh <database_name> absolute_path_with_file_name
+
+
+# execute 01_inventory.js script
+    db.inventory.find({qty:10});
+    db.inventory.find({qty: {$eq:10}});
+
+    $eq
+    $gt
+    $gte
+    $lt
+    $lte
+    $ne
+
+

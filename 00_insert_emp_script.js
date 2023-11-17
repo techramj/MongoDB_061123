@@ -1,0 +1,61 @@
+db.emp.insertMany([
+  { _id: 1, firstName: "sam1", lastName: "Desuza", salary: 1000 },
+  { _id: 27, firstName: "sam2", lastName: "Desuza", salary: 1000 },
+  { _id: 3, firstName: "sam", lastName: "Desuza", salary: 1000 },
+  { _id: 4, firstName: "sammeer", lastName: "Desuza", salary: 1000 },
+  { _id: 5, firstName: "Jack", lastName: "Desuza", salary: 1000 },
+  { _id: 6, firstName: "John", lastName: "Desuza", salary: 1000 },
+  { _id: 7, firstName: "Ram", salary: 1000 },
+  { _id: 8, firstName: "sam", salary: 1000 },
+  { _id: 9, firstName: "sam" },
+  { _id: 10, salary: 1000 },
+  { _id: 11, firstName: "Raj" },
+  { _id: 12, firstName: "Ajay", salary: 1000 },
+  { _id: 13, firstName: "Aditya", salary: 1000 },
+  { _id: 14, firstName: "Jessica", lastName: "Desuza", salary: 1000 },
+  { _id: 15, firstName: "Manoj", salary: 1000 },
+  { _id: 16, firstName: "sam", lastName: "Desuza", salary: 1000 },
+  { _id: 17, firstName: "sam" },
+  { _id: 18, firstName: "sam", lastName: "Desuza", salary: 1000 },
+  { _id: 19, firstName: "sam", lastName: "Desuza", salary: 1000 },
+  { _id: 20, firstName: "sam", lastName: "Desuza", salary: 1000 },
+  {
+    _id: 21,
+    firstName: "sam",
+    lastName: "Desuza",
+    salary: 1000,
+    project: ["ems", "mediassist", "sms"],
+  },
+  {
+    _id: 22,
+    name: { initial: "Mr", firstName: "Abhijeet", lastName: "Santhalia" },
+    address: {
+      line1: "flat no 202, Aashirwad building",
+      line2: "nanded city",
+      landmark: "near Destination center",
+      city: {
+        name: "Pune",
+        population: 210000000,
+      },
+      pincode: 123455,
+    },
+  },
+  {
+    _id: 101,
+    firstName: "Ram",
+    lastName: "Jaiswal",
+    job: {
+      jobId: "TL",
+      job_desc: "Team Lead",
+      minSal: 20000,
+      maxsal: 40000,
+    },
+    dept: {
+      did: 10,
+      dname: "IT",
+      location: { locationId: 1000, city: "Pune" },
+    },
+  },
+]);
+
+

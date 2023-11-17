@@ -1,0 +1,89 @@
+/************Core componenet in mongoDB***********/
+1. mongosh : 
+2. mongod: primary daemon process, the core process for the MongoDB system
+3. mongos: process the routes queries and writes operations in a shareded cluster
+
+
+/************** Type of Collection *************/
+1. Regular 
+2. Caped Collection
+3. Time series collection
+
+
+CRUD: 
+create:
+    db.collection.insertOne({});   {key:value}
+    db.collection.insertMany([]);
+
+Read:
+   db.collection.find({filter}, {projection}); //20
+   db.collection.findOne({filter}, {projection});
+
+   db.emp.find({name:'sam'}).skip(1);
+   db.emp.find({name:'sam'}).count();
+   db.emp.find({name:'sam'}).skip(1).limit(2); //max 2 record
+   db.emp.distinct('name');
+
+   //how many field will below query display
+   db.emp.find({}, {name:1, salary:1, age:1}); // 3, 4, 2, all
+   
+
+
+Update:
+   db.collection.updateOne({filter}, {operator to set data});
+   db.collection.updateMany({filter}, {operator to set data});
+
+//change the name of _id:100 to Jackie  => $set
+   db.emp.updateOne({_id:100}, {$set :{name:'Jackie'}});
+   {
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 1,
+    modifiedCount: 1,
+    upsertedCount: 0
+   }
+
+   db.emp.updateOne({_id:100}, {$set :{name:'Jackie'}});
+   {
+    acknowledged: true,
+    insertedId: null,
+    matchedCount: 1,
+    modifiedCount: 0,
+    upsertedCount: 0
+   }
+
+
+//increment the salary of _id:100 by 1000 => $inc
+    db.emp.updateOne({_id:100}, {$inc: {salary:1000}})
+
+//increment the salary of _id:100 by 10% => $mul
+    db.emp.updateOne({_id:100}, {$mul: {salary:1.1}});
+
+
+//remove the field notes, region,photo,extension  => $unset
+db.emp.updateMany({}, {$unset: {notes:'', region:'', photo:'', extension:''}});
+
+//rename the field lastName to name
+db.emp.updateMany({}, {$rename:{'lastName':'name'}});
+
+
+//add the new skill MongoDB 
+db.emp.updateMany({name:'Vijay'}, {$addToSet:{skill:'MongoDB'}})
+
+Delete
+  db.collection.deleteOne({filter});
+  db.collection.deleteMany({filter});
+
+
+
+#Embedded Document
+
+
+
+
+
+
+
+
+
+

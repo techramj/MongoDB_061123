@@ -1,0 +1,150 @@
+Element operator
+---------------
+$exists: whether the field are present or not
+    db.emp.find({age: {$exists:true}});
+
+
+$type : to check the type of field
+-----
+   db.emp.find({age: {$type: 'int'}});
+
+
+
+Evaluation:
+-----------
+db.budgets.insertMany([
+    {_id:1, category:'food', budget:400, spent:450},
+    {_id:2, category:'drinks', budget:100, spent:150},
+    {_id:3, category:'clothes', budget:1000, spent:700},
+    {_id:4, category:'medicine', budget:200, spent:300},
+    {_id:5, category:'travel', budget:500, spent:100},
+    {_id:6, category:'misc', budget:200, spent:200},
+]);
+
+db.collection.find({filter}, {projection});
+
+db.budgets.find({spent: {$gt:500}});
+
+$expr => compare the field
+---------------------------
+db.budgets.find({$expr: {$gt: ["$spent", "$budget"]}});
+db.budgets.find({$expr: {$gt: ["$spent", "$budget"]}}, {_id:0, category:1});
+
+$mod
+----
+find the documents whose spent is  divisible by 100 
+db.budgets.find({spent: {$mod:[100,0]}});
+db.budgets.find({spent: {$mod:[100,50]}}, {_id:0, category:1, spent:1});
+
+
+$text
+------
+db.articles.insertMany([
+    {_id:1, subject:'Core Java', author:'abc', views:60},
+    {_id:2, subject:'Adv Java', author:'def', views:50},
+    {_id:3, subject:'Spring', author:'ghi', views:70},
+    {_id:4, subject:'Spring boot', author:'pqr', views:60},
+    {_id:5, subject:'Spring microservices with Java', author:'def', views:40},
+    {_id:6, subject:'Java framework', author:'xyz', views:10},
+    {_id:7, subject:'MongoDB', author:'lmn', views:100}
+]);
+
+
+db.articles.find({
+    $text: {$search:"Spring"}
+},{subject:1, _id:0}); //error $text can be applied on index field
+
+//create the index on subject 
+db.articles.createIndex({subject:"text"});
+
+
+
+Mapping:
+---------
+one to one
+    emp(id,name,salary) -> address(stree,city, pincode)
+
+
+one to Many/Many To one
+    questions(id,creator, question)   => answers(id,ans)
+    city => citizens
+
+ Many to Many
+   order -> Product
+   In an order, we can purchase many Product
+   one product can be ordered by many customer
+
+
+   Books -----> Authors
+
+
+aggregation: 
+  db.collection.aggregate([
+    {$match},
+    {$sort},
+    {$group},
+    {$project}
+    ...
+    ..
+    .
+
+
+  ]);
+
+Number of stages restriction:
+    max no of stages in  a single pipeline: 1000
+
+Memory restriction:
+    each doucment max 16mb of data
+
+db.orders.insertMany([
+    {_id:0, name:'Pepperoni', size: 'small', price:100, quantity:10, date:ISODate("2023-03-15T08:08:05Z")},
+    {_id:1, name:'Pepperoni', size: 'medium', price:200, quantity:20, date:ISODate("2023-03-15T08:08:05Z")},
+    {_id:2, name:'Pepperoni', size: 'large', price:300, quantity:30, date:ISODate("2023-03-17T08:08:05Z")},
+    {_id:3, name:'cheese', size: 'small', price:120, quantity:15, date:ISODate("2023-03-15T08:08:05Z")},
+    {_id:4, name:'cheese', size: 'medium', price:130, quantity:50, date:ISODate("2023-01-15T08:08:05Z")},
+    {_id:5, name:'cheese', size: 'large', price:140, quantity:10, date:ISODate("2023-01-15T08:08:05Z")},
+    {_id:6, name:'paneer', size: 'small', price:100, quantity:10, date:ISODate("2023-01-15T08:08:05Z")},
+    {_id:7, name:'panner', size: 'medium', price:200, quantity:40, date:ISODate("2023-03-15T08:08:05Z")},
+    {_id:8, name:'panner', size: 'large', price:300, quantity:10, date:ISODate("2023-01-15T08:08:05Z")}  
+]);
+
+db.orders.aggregate(
+[
+  { $match:{price: { $gte: 150}} },
+  { $sort:{ quantity: 1 } },
+  { $skip:1 },
+  {$limit:2 },
+  {$project: {name:1, quantity:1,price:1,_id:0}}
+]
+);
+
+grouping
+-----------
+
+db.orders.aggregate([
+    {$group: {_id: "$size", qty: { $sum: "$quantity",} }}
+]);
+
+
+
+
+validation:
+-----------
+
+
+create the collection:
+
+approach 1:
+    db.createCollecton('emp');
+
+approach 2:
+    db.emp.insertOne({_id:1, name:'Jack',age:20});
+
+approach 3: create collection with validation
+  db.createCollecton("emp")
+
+db.emp.insertOne({_id:2, name:111 });
+
+
+

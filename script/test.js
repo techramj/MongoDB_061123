@@ -43,3 +43,17 @@ db.emp.insertMany([
 
 //depth of nesting: 100 level
 //size of document: 16 MB
+emp: name,salary
+
+db.createCollection("emp",{
+  validator:{
+    $jsonSchema : {
+      bsonType:'object',
+      required: ['name','salary'],
+      properties: {
+        name: {bsonType: 'string', description:'Name is Mandatory and must be a string'},
+        salary: {bsonType: 'number', description:'Salary is Mandatory and must be a number'}
+      }
+    }
+  }
+});
